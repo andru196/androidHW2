@@ -9,6 +9,8 @@ class PokeRepositoryImplTest : TestCase() {
     fun testGet1() {
         val rep = PokeRepositoryImpl(PokeApiClient())
         val l = rep.get1()
+
+
         Asserts.checkNull(3)
 
     }
