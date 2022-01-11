@@ -24,6 +24,10 @@ class DataBaseRepositoryImpl @Inject constructor(
         openItemDao.getAll()
             .map { x-> x.pokemonId.toInt() }
 
+    override suspend fun getOpenedPokemon(): List<Pokemon> =
+        openItemDao.getAll().map { x -> pokemonEntityDao.getById(x.pokemonId.toInt())!!.toPokemon() }
+
+
     override suspend fun addSearch(search: Search) = searchItemDao.insert(SearchItemEntity(
         0, search.searchText, search.results
                                         .map { x -> x.id.toString() }

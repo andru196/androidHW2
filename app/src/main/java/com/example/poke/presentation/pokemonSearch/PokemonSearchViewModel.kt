@@ -1,5 +1,7 @@
 package com.example.poke.presentation.pokemonSearch
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.example.poke.domain.entity.Pokemon
 import com.example.poke.domain.entity.Search
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 @HiltViewModel
 class PokemonSearchViewModel @Inject constructor(
@@ -79,6 +84,33 @@ class PokemonSearchViewModel @Inject constructor(
             databaseRepository.addPokemon(pokemon)
         }
         databaseRepository.addSearch(Search(text, pokemons))
+    }
+
+    suspend fun getMostPopular(): List<Pokemon> {
+        val grouped = databaseRepository.getOpenedPokemon()
+            .groupBy { x -> x.id }
+        val result = mutableMapOf<Pokemon, Int>()
+        for (g in grouped)
+            result[g.value.last()] = g.value.size
+        val realRes = ArrayList<Pokemon>()
+        result.values.sortedBy{x->x}.forEach { z ->
+            realRes.addAll(result.filter { x -> x.value == z }.keys)
+        }
+        return realRes.reversed()
+    }
+
+    suspend fun getMostSearched(): List<Pokemon> {
+        val grouped = databaseRepository.getSearches()
+            .flatMap {  x-> x.results }
+            .groupBy { x -> x.id }
+        val result = mutableMapOf<Pokemon, Int>()
+        for (g in grouped)
+            result[g.value.last()] = g.value.size
+        val realRes = ArrayList<Pokemon>()
+        result.values.sortedBy{x->x}.forEach { z ->
+            realRes.addAll(result.filter { x -> x.value == z }.keys)
+        }
+        return realRes.reversed()
     }
 }
 
