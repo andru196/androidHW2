@@ -12,7 +12,7 @@
             android:id="@+id/search_pokemon_ll"
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/search_pokemon_name_layout"
@@ -30,9 +30,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_result_list"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@id/search_pokemon_name_layout"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="@id/search_pokemon_ll"/>
         </LinearLayout>
     </ScrollView>
 

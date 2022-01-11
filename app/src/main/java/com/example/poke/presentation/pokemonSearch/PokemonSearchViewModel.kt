@@ -41,6 +41,8 @@ class PokemonSearchViewModel @Inject constructor(
     }
 
     fun pokemonSearch(text:String) {
+        if (text.isBlank())
+            return
         _screenState.value = PokemonSearchState.Loading()
         viewModelScope.launchWithErrorHandler(block = {
             withContext(Dispatchers.IO) {

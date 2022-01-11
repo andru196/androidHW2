@@ -38,23 +38,26 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
                     viewBinding.searchPokemonError.isVisible = false
                     viewBinding.searchProgress.isVisible = true
                     viewBinding.searchResultList.isVisible = false
+                    viewBinding.searchSubmit.isVisible = false
                 }
                 is PokemonSearchState.Success -> {
                     searchPokemonAdapter.submitList(state.pokemons)
                     viewBinding.searchPokemonError.isVisible = false
                     viewBinding.searchProgress.isVisible = false
                     viewBinding.searchResultList.isVisible = true
+                    viewBinding.searchSubmit.isVisible = true
                 }
             }
-
-            viewModel.openDetailAction.observe(viewLifecycleOwner) {
-                openDetail(it)
-            }
-
-            viewBinding.searchSubmit.setOnClickListener {
-                viewModel.pokemonSearch(viewBinding.searchPokemonNameEdit.text.toString())
-            }
         }
+
+        viewModel.openDetailAction.observe(viewLifecycleOwner) {
+            openDetail(it)
+        }
+
+        viewBinding.searchSubmit.setOnClickListener {
+            viewModel.pokemonSearch(viewBinding.searchPokemonNameEdit.text.toString())
+        }
+
     }
 
     private fun openDetail(film: Pokemon) {
