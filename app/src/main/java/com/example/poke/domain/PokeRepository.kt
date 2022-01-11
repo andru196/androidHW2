@@ -1,6 +1,6 @@
 package com.example.poke.domain
 
-import me.sargunvohra.lib.pokekotlin.model.Pokemon
+import com.example.poke.domain.entity.Pokemon
 
 interface PokeRepository {
 
