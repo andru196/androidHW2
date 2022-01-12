@@ -1,21 +1,29 @@
 package com.example.poke.presentation.pokemonSearch
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.poke.domain.DatabaseRepository
 import com.example.poke.domain.PokeRepository
 import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import me.sargunvohra.lib.pokekotlin.model.Pokemon
+import com.example.poke.domain.entity.Pokemon
+import com.example.poke.domain.entity.Search
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 @HiltViewModel
 class PokemonSearchViewModel @Inject constructor(
-    private val pokeRepository: PokeRepository
+    private val pokeRepository: PokeRepository,
+    private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
 
     private val _openDetailAction = SingleLiveEvent<Pokemon>()
@@ -37,6 +45,9 @@ class PokemonSearchViewModel @Inject constructor(
 
     fun onPokemonClicked(pokemon: Pokemon) {
         _openDetailAction.value = pokemon
+        viewModelScope.launchWithErrorHandler {
+            val pokemons = databaseRepository.addOpen(pokemonId = pokemon.id)
+        }
     }
 
     fun pokemonSearch(text:String) {
@@ -47,13 +58,62 @@ class PokemonSearchViewModel @Inject constructor(
             withContext(Dispatchers.IO) {
                 val pokemons = pokeRepository.searchPokemons(text)
                 _screenState.postValue(PokemonSearchState.Success(pokemons))
+                saveResult(text, pokemons)
             }
         }, onError = {
             _screenState.value = PokemonSearchState.Error(it)
         })
     }
 
+    fun searchTextChanged(text: String) {
+        val lastState = (_screenState.value as? PokemonSearchState.Success)?.pokemons
+        _screenState.value = PokemonSearchState.Loading()
+        viewModelScope.launchWithErrorHandler {
+            val pokemons = databaseRepository.getPokemonByName(text)
+            if (pokemons.isNotEmpty())
+                _screenState.postValue(PokemonSearchState.Success(pokemons))
+            else if (lastState != null)
+                _screenState.postValue(PokemonSearchState.Success(lastState))
+        }
+    }
+
+
+    private suspend fun saveResult(text: String, pokemons: List<Pokemon>) {
+        pokemons.forEach { pokemon ->
+            if (databaseRepository.getPokemonById(pokemon.id) == null)
+            databaseRepository.addPokemon(pokemon)
+        }
+        databaseRepository.addSearch(Search(text, pokemons))
+    }
+
+    suspend fun getMostPopular(): List<Pokemon> {
+        val grouped = databaseRepository.getOpenedPokemon()
+            .groupBy { x -> x.id }
+        val result = mutableMapOf<Pokemon, Int>()
+        for (g in grouped)
+            result[g.value.last()] = g.value.size
+        val realRes = ArrayList<Pokemon>()
+        result.values.sortedBy{x->x}.forEach { z ->
+            realRes.addAll(result.filter { x -> x.value == z }.keys)
+        }
+        return realRes.reversed()
+    }
+
+    suspend fun getMostSearched(): List<Pokemon> {
+        val grouped = databaseRepository.getSearches()
+            .flatMap {  x-> x.results }
+            .groupBy { x -> x.id }
+        val result = mutableMapOf<Pokemon, Int>()
+        for (g in grouped)
+            result[g.value.last()] = g.value.size
+        val realRes = ArrayList<Pokemon>()
+        result.values.sortedBy{x->x}.forEach { z ->
+            realRes.addAll(result.filter { x -> x.value == z }.keys)
+        }
+        return realRes.reversed()
+    }
 }
+
 
 sealed class PokemonSearchState {
     class Loading(): PokemonSearchState()

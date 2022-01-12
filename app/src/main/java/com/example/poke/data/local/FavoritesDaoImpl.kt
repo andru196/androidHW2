@@ -2,7 +2,7 @@ package com.example.poke.data.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.example.poke.domain.entity.Film
+import com.example.poke.domain.entity.Pokemon
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -19,7 +19,7 @@ class FavoritesDaoImpl @Inject constructor(
         private const val FAVORITES_KEY = "FAVORITES_KEY"
     }
 
-    private var films: List<Film>
+    private var films: List<Pokemon>
         get() {
             return sharedPreferences.getString(FAVORITES_KEY, null)?.let {
                 Json.decodeFromString(it)
@@ -31,20 +31,20 @@ class FavoritesDaoImpl @Inject constructor(
             }
         }
 
-    private val state: Flow<List<Film>> = MutableStateFlow(films)
+    private val state: Flow<List<Pokemon>> = MutableStateFlow(films)
 
-    override fun add(film: Film) {
+    override fun add(film: Pokemon) {
         films += film
     }
 
-    override fun delete(film: Film) {
+    override fun delete(film: Pokemon) {
         films -= film
     }
 
-    override fun isInFavorites(film: Film): Boolean =
+    override fun isInFavorites(film: Pokemon): Boolean =
         films.contains(film)
 
-    override fun getFavorites(): Flow<List<Film>> = state
+    override fun getFavorites(): Flow<List<Pokemon>> = state
 
     override fun getCount(): Flow<Int> {
         return state.map { it.size }

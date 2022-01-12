@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.poke.databinding.ItemFilmBinding
 import com.example.poke.databinding.ItemPokemonBinding
-import com.example.poke.domain.entity.Film
-import me.sargunvohra.lib.pokekotlin.model.Pokemon
+import com.example.poke.domain.entity.Pokemon
 
 class SearchPokemonAdapter(
     private val onPokemonClicked: (Pokemon) -> Unit

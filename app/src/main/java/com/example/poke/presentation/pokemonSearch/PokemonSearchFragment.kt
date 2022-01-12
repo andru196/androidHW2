@@ -3,6 +3,7 @@ package com.example.poke.presentation.pokemonSearch
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -10,7 +11,7 @@ import com.example.poke.R
 import com.example.poke.databinding.PokemonSearchScreenBinding
 import com.example.poke.presentation.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import me.sargunvohra.lib.pokekotlin.model.Pokemon
+import com.example.poke.domain.entity.Pokemon
 
 @AndroidEntryPoint
 class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
@@ -38,15 +39,19 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
                     viewBinding.searchPokemonError.isVisible = false
                     viewBinding.searchProgress.isVisible = true
                     viewBinding.searchResultList.isVisible = false
-                    viewBinding.searchSubmit.isVisible = false
+                    viewBinding.searchSubmit.isEnabled = false
                 }
                 is PokemonSearchState.Success -> {
                     searchPokemonAdapter.submitList(state.pokemons)
                     viewBinding.searchPokemonError.isVisible = false
                     viewBinding.searchProgress.isVisible = false
                     viewBinding.searchResultList.isVisible = true
-                    viewBinding.searchSubmit.isVisible = true
+                    viewBinding.searchSubmit.isEnabled = true
                 }
+            }
+
+            viewBinding.searchPokemonNameEdit.doOnTextChanged { text, _, _, _ ->
+                viewModel.searchTextChanged(text.toString())
             }
         }
 

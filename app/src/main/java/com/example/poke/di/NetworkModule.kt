@@ -24,7 +24,7 @@ abstract class NetworkModule {
 
     @Binds
     @Singleton
-    abstract fun getGeoRepository(
+    abstract fun getPokeRepository(
         pokeRepositoryImpl: PokeRepositoryImpl
     ): PokeRepository
 

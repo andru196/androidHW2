@@ -5,10 +5,9 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import me.sargunvohra.lib.pokekotlin.client.PokeApiClient
-import me.sargunvohra.lib.pokekotlin.model.ApiResource
 import me.sargunvohra.lib.pokekotlin.model.NamedApiResource
 import me.sargunvohra.lib.pokekotlin.model.Pokemon
-import java.util.Collections.synchronizedList
+import java.util.*
 import javax.inject.Inject
 
 final class PokeRepositoryImpl @Inject constructor(
@@ -17,16 +16,16 @@ final class PokeRepositoryImpl @Inject constructor(
 
     private var _allPokemons: List<NamedApiResource>? = null
 
-    override suspend fun searchPokemons(search: String): List<Pokemon> {
+    override suspend fun searchPokemons(search: String): List<com.example.poke.domain.entity.Pokemon> {
         val ids = getAllPokemonsList()
             .filter { x -> x.name.lowercase().contains(search) }
             .map { x -> x.id }
             .toIntArray()
-        return getPokemons(ids = ids)
+        return getPokemons(ids = ids).map { x -> x.toPokemon() }
     }
 
-    override suspend fun getPokemonById(id: Int): Pokemon = coroutineScope {
-        pokeApi.getPokemon(id)
+    override suspend fun getPokemonById(id: Int) = coroutineScope {
+        pokeApi.getPokemon(id).toPokemon()
     }
 
     suspend fun getPokemons(vararg ids:Int): List<Pokemon> {
@@ -43,5 +42,19 @@ final class PokeRepositoryImpl @Inject constructor(
         _allPokemons ?: pokeApi.getPokemonList(0, 100000).results.also {
             _allPokemons = it }
     }
+
+
+    private fun Pokemon.toPokemon() = com.example.poke.domain.entity.Pokemon(
+        id = id,
+        name = name,
+        color = (0..0xffffff).random(),
+        height = height.toDouble(),
+        weight = weight.toDouble(),
+        is_default = isDefault,
+        baseExp = baseExperience
+    )
+
+    private fun IntRange.random() =
+        Random().nextInt((endInclusive + 1) - start) + start
 
 }
