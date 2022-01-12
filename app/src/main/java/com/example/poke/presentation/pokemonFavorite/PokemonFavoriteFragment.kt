@@ -88,13 +88,14 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
 
     }
 
-
     private fun openSearch() {
         parentFragmentManager.navigate(PokemonSearchFragment.newInstance())
+
     }
-}
 
     private fun openDetail(film: com.example.poke.domain.entity.Pokemon) {
         //parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
     }
+
+}
 

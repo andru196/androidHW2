@@ -1,5 +1,6 @@
 package com.example.poke.presentation.pokemonSearch
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -35,6 +36,7 @@ class SearchPokemonAdapter(
         with (holder.binding) {
             val item = getItem(position)
             itemPokemonName.text = item.name
+            root.setBackgroundColor(Color.parseColor("#40${"%06x".format(item.color)}"))
             root.setOnClickListener { onPokemonClicked(item) }
         }
     }
