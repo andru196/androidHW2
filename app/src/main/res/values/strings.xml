@@ -2,7 +2,7 @@
     <string name="app_name">Poke</string>
 
     <string name="item_film_rating_pattern">Рейтинг ожидания %1$s</string>
-    <string name="top_film_error_text">Во время загрузки произлшда следующая ошибка</string>
+    <string name="top_film_error_text">Во время загрузки произошла следующая ошибка</string>
     <string name="search_year_from_text">Год от</string>
     <string name="search_year_to_text">Год до</string>
     <string name="search_submit">Поиск</string>
@@ -10,4 +10,6 @@
     <string name="menu_bottom_fav">Любимки</string>
     <string name="menu_bottom_tops">Список топов</string>
     <string name="pokemon_name">Имя покемона</string>
+    <string name="your_favorite_pokemons">Your Favorite Pokemons</string>
+    <string name="most_popular_pokemons">Most Popular Pokemons</string>
 </resources>

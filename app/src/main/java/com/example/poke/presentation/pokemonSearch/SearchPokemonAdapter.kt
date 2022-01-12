@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.poke.databinding.ItemFilmBinding
 import com.example.poke.databinding.ItemPokemonBinding
 import com.example.poke.domain.entity.Pokemon
+import kotlin.reflect.KFunction1
 
 class SearchPokemonAdapter(
-    private val onPokemonClicked: (Pokemon) -> Unit
+    private val onPokemonClicked: KFunction1<Pokemon, Unit>
 ) : ListAdapter<Pokemon, SearchPokemonAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Pokemon>() {
         override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =

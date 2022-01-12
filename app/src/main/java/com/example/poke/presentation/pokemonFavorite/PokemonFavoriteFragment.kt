@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.poke.R
 import com.example.poke.databinding.TopPokeScreenBinding
+import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.BaseFragment
-import com.example.poke.presentation.pokemonSearch.SearchPokemonAdapter
+import com.example.poke.presentation.common.navigate
+import com.example.poke.presentation.pokemonFavorite.PokemonFavoriteViewModel_Factory.newInstance
+import com.example.poke.presentation.pokemonSearch.PokemonSearchFragment
+import com.example.poke.presentation.pokemonSearch.PokemonSearchViewModel_Factory.newInstance
 import dagger.hilt.android.AndroidEntryPoint
-import me.sargunvohra.lib.pokekotlin.model.Pokemon
 
 @AndroidEntryPoint
 class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
@@ -22,36 +25,36 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val searchPokemonAdapter = SearchPokemonAdapter(viewModel::onPokemonClicked)
+        val pokemonHorizontalAdapter = PokemonHorizontalAdapter(viewModel::onPokemonClicked)
         with(viewBinding.favoritesPokeView) {
-            adapter = searchPokemonAdapter
+            adapter = pokemonHorizontalAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
-        viewModel.screenState.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is PokemonFavoriteViewModel.PokemonFavoriteState.Error -> {
-//                    viewBinding.loadFavoritePokeError.isVisible = true
-//                    viewBinding.loadPopularPokeError.isVisible = true
-//                    viewBinding.loadFavoritePokeProgress.isVisible = false
-//                    viewBinding.loadPopularPokeProgress.isVisible = false
+        viewModel.screenState.observe(viewLifecycleOwner) {
+            when (it) {
+                is PokemonFavoriteState.Error -> {
+                    viewBinding.loadFavoritePokeError.isVisible = true
+                    viewBinding.loadPopularPokeError.isVisible = true
+                    viewBinding.loadFavoritePokeProgress.isVisible = false
+                    viewBinding.loadPopularPokeProgress.isVisible = false
                     viewBinding.favoritesPokeView.isVisible = false
                     viewBinding.mostPopularPokeView.isVisible = false
                 }
-                is PokemonFavoriteViewModel.PokemonFavoriteState.Loading -> {
-//                    viewBinding.loadFavoritePokeError.isVisible = false
-//                    viewBinding.loadPopularPokeError.isVisible = false
-//                    viewBinding.loadFavoritePokeProgress.isVisible = true
-//                    viewBinding.loadPopularPokeProgress.isVisible = true
+                is PokemonFavoriteState.Loading -> {
+                    viewBinding.loadFavoritePokeError.isVisible = false
+                    viewBinding.loadPopularPokeError.isVisible = false
+                    viewBinding.loadFavoritePokeProgress.isVisible = true
+                    viewBinding.loadPopularPokeProgress.isVisible = true
                     viewBinding.favoritesPokeView.isVisible = false
                     viewBinding.mostPopularPokeView.isVisible = false
                 }
-                is PokemonFavoriteViewModel.PokemonFavoriteState.Success -> {
-                    searchPokemonAdapter.submitList(state.pokemons)
-//                    viewBinding.loadFavoritePokeError.isVisible = false
-//                    viewBinding.loadPopularPokeError.isVisible = false
-//                    viewBinding.loadFavoritePokeProgress.isVisible = false
-//                    viewBinding.loadPopularPokeProgress.isVisible = false
+                is PokemonFavoriteState.Success -> {
+                    pokemonHorizontalAdapter.submitList(it.pokemons)
+                    viewBinding.loadFavoritePokeError.isVisible = false
+                    viewBinding.loadPopularPokeError.isVisible = false
+                    viewBinding.loadFavoritePokeProgress.isVisible = false
+                    viewBinding.loadPopularPokeProgress.isVisible = false
                     viewBinding.favoritesPokeView.isVisible = true
                     viewBinding.mostPopularPokeView.isVisible = true
                 }
@@ -61,13 +64,26 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
         viewModel.openDetailAction.observe(viewLifecycleOwner) {
             openDetail(it)
         }
+        viewBinding.pokemonSearch.setOnClickListener {
+            openSearch()
+        }
 
 
     }
+    sealed class PokemonFavoriteState {
+        class Loading() : PokemonFavoriteState()
+        class Success(val pokemons: List<Pokemon>) : PokemonFavoriteState()
+        class Error(val throwable: Throwable) : PokemonFavoriteState()
+    }
 
-    private fun openDetail(film: Pokemon) {
+
+    private fun openSearch() {
+        parentFragmentManager.navigate(PokemonSearchFragment.newInstance())
+
+    }
+}
+
+    private fun openDetail(film: com.example.poke.domain.entity.Pokemon) {
         //parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
     }
 
-
-}
