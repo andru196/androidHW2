@@ -16,6 +16,10 @@ import com.example.poke.domain.entity.Pokemon
 @AndroidEntryPoint
 class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
 
+    companion object {
+        fun newInstance() = PokemonSearchFragment()
+    }
+
     private val viewBinding by viewBinding(PokemonSearchScreenBinding::bind)
     private val viewModel by viewModels<PokemonSearchViewModel>()
 
@@ -53,6 +57,10 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
             viewBinding.searchPokemonNameEdit.doOnTextChanged { text, _, _, _ ->
                 viewModel.searchTextChanged(text.toString())
             }
+
+            viewBinding.searchPokemonBackImage.setOnClickListener {
+                goBack()
+            }
         }
 
         viewModel.openDetailAction.observe(viewLifecycleOwner) {
@@ -63,6 +71,10 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
             viewModel.pokemonSearch(viewBinding.searchPokemonNameEdit.text.toString())
         }
 
+    }
+
+    private fun goBack() {
+        parentFragmentManager.popBackStack()
     }
 
     private fun openDetail(film: Pokemon) {

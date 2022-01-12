@@ -85,33 +85,6 @@ class PokemonSearchViewModel @Inject constructor(
         }
         databaseRepository.addSearch(Search(text, pokemons))
     }
-
-    suspend fun getMostPopular(): List<Pokemon> {
-        val grouped = databaseRepository.getOpenedPokemon()
-            .groupBy { x -> x.id }
-        val result = mutableMapOf<Pokemon, Int>()
-        for (g in grouped)
-            result[g.value.last()] = g.value.size
-        val realRes = ArrayList<Pokemon>()
-        result.values.sortedBy{x->x}.forEach { z ->
-            realRes.addAll(result.filter { x -> x.value == z }.keys)
-        }
-        return realRes.reversed()
-    }
-
-    suspend fun getMostSearched(): List<Pokemon> {
-        val grouped = databaseRepository.getSearches()
-            .flatMap {  x-> x.results }
-            .groupBy { x -> x.id }
-        val result = mutableMapOf<Pokemon, Int>()
-        for (g in grouped)
-            result[g.value.last()] = g.value.size
-        val realRes = ArrayList<Pokemon>()
-        result.values.sortedBy{x->x}.forEach { z ->
-            realRes.addAll(result.filter { x -> x.value == z }.keys)
-        }
-        return realRes.reversed()
-    }
 }
 
 

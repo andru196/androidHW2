@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
-public open class BaseFragment(
+abstract class BaseFragment(
     @LayoutRes layoutRes: Int) : Fragment(layoutRes) {
+
     private val  logTag: String = this.javaClass.simpleName
 
 

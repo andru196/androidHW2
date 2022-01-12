@@ -1,55 +1,8 @@
-//package com.example.poke.presentation.pokemonFavorite
-//
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import android.widget.ImageView
-//
-//import androidx.recyclerview.widget.RecyclerView
-//import com.example.poke.R
-//import com.example.poke.presentation.pokemonSearch.SearchPokemonAdapter
-//
-//import com.squareup.picasso.Picasso
-//import me.sargunvohra.lib.pokekotlin.model.Pokemon
-//
-//class PokemonHorizontalAdapter (private val onPokemonClicked: (Pokemon) -> Unit) :
-//    RecyclerView.Adapter<PokemonHorizontalAdapter.MyView>() {
-//    class MyView(view: View) : RecyclerView.ViewHolder(view) {
-//        var pokemon: Pokemon
-//        init {
-//            pokemon = view
-//                .findViewById<Pokemon>(R.id.ite)
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyView {
-//        val itemView: View = LayoutInflater
-//            .from(parent.context)
-//            .inflate(
-//                R.layout.item_pokemon,
-//                parent,
-//                false
-//            )
-//        return MyView(itemView)
-//    }
-//
-//    override fun onBindViewHolder(holder: PokemonHorizontalAdapter.MyView, position: Int) {
-//        with (holder.binding) {
-//            val item = getItem(position)
-//            itemPokemonName.text = item.name
-//            root.setOnClickListener { onPokemonClicked(item) }
-//        }
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return list.size
-//    }
-//
-//}
-//
-
 package com.example.poke.presentation.pokemonFavorite
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -86,6 +39,7 @@ class PokemonHorizontalAdapter(
             val item = getItem(position)
             itemPokemonName.text = item.name
             itemPokemonId.text = item.id.toString()
+            itemSelf.setCardBackgroundColor(Color.parseColor("#${"%06x".format(item.color)}"))
             root.setOnClickListener { onPokemonClicked(item) }
         }
     }
