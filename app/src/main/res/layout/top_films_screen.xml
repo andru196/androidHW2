@@ -1,36 +1,57 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <ImageView
+        android:id="@+id/top_view_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/main_activity_container"
+        app:srcCompat="@drawable/ic_baseline_search_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/top_film_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_pokemon" />
+        app:layout_constraintTop_toBottomOf="@id/top_view_search"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_activity_container2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_activity_bottom"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/top_film_progress"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom" />
-</LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+        android:id="@+id/top_film_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top_film_error_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/top_film_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        app:layout_constraintEnd_toStartOf="@id/top_view_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_location_city_24"
+        android:padding="16dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.poke.domain.PokeRepository
-import com.example.poke.domain.entity.Film
 import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
