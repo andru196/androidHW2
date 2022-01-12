@@ -70,6 +70,7 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
 
 
     }
+
     sealed class PokemonFavoriteState {
         class Loading() : PokemonFavoriteState()
         class Success(val pokemons: List<Pokemon>) : PokemonFavoriteState()
@@ -78,12 +79,14 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
 
 
     private fun openSearch() {
-        parentFragmentManager.navigate(PokemonSearchFragment.newInstance())
-
+//        parentFragmentManager.navigate(PokemonSearchFragment.newInstance())
+//
+//    }
     }
-}
 
     private fun openDetail(film: com.example.poke.domain.entity.Pokemon) {
         //parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
     }
+
+}
 
