@@ -24,35 +24,29 @@
             >
 
             <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                style="@style/textStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
                 android:layout_marginTop="80dp"
                 android:id="@+id/item_pokemon_name"
                 android:text="Pika"
-                android:textSize="18sp"
-                android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/item_pokemon_id"
-                android:layout_width="15dp"
-                android:layout_height="wrap_content"
                 android:labelFor="@id/item_pokemon_id_subject"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="id"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
                 android:textSize="14sp"
+
+                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
                 />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/item_pokemon_id_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/item_pokemon_id"
                 app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"

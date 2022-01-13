@@ -43,140 +43,106 @@
             >
 
             <TextView
+                style="@style/textStyle"
+                android:layout_marginTop="100dp"
                 android:id="@+id/poke_detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/poke_detail_id_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/poke_detail_id_label"
-                android:layout_marginTop="100dp"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:paddingBottom="5dp"
                 tools:text="Pika" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_id_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/poke_detail_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/poke_detail_height"
                 android:labelFor="@id/poke_detail_id_subject"
                 android:text="@string/id"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:paddingBottom="5dp"
-                />
+                app:layout_constraintBottom_toTopOf="@id/poke_detail_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/poke_detail_name" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_id_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/poke_detail_height_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_name"
-                android:paddingBottom="5dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@id/poke_detail_height_subject"
                 tools:text="#001023" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/poke_detail_id_label"
-                android:paddingBottom="5dp"
                 android:labelFor="@id/poke_detail_height_subject"
                 android:text="@string/height"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@id/poke_detail_weight" />
+                app:layout_constraintBottom_toTopOf="@id/poke_detail_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/poke_detail_id_label" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_height_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/poke_detail_id_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poke_detail_weight_subject"
                 tools:text="7.8" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:labelFor="@id/poke_detail_height_subject"
-                android:paddingBottom="5dp"
                 android:text="@string/weight"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_is_default"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_height" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_weight_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingBottom="5dp"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_is_default_subject"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_height_subject"
                 tools:text="76" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_is_default"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                android:paddingBottom="5dp"
-                android:textSize="16sp"
                 android:labelFor="@id/poke_detail_is_default_subject"
                 android:text="@string/is_default"
-                android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_weight" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_is_default_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingBottom="5dp"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp_subject"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_weight_subject"
                 tools:text="True" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_base_exp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                android:paddingBottom="5dp"
                 android:labelFor="@id/poke_detail_base_exp_subject"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 android:text="@string/base_exp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_is_default" />
 
             <TextView
+                style="@style/textStyle"
                 android:id="@+id/poke_detail_base_exp_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:paddingBottom="5dp"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_base_exp"
                 tools:text="1009" />
         </androidx.constraintlayout.widget.ConstraintLayout>
