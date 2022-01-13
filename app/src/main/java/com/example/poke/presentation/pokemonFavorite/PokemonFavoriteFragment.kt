@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.poke.R
 import com.example.poke.databinding.TopPokeScreenBinding
+import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.BaseFragment
 import com.example.poke.presentation.common.navigate
+import com.example.poke.presentation.pokemonDetail.PokemonDetailFragment
 import com.example.poke.presentation.pokemonSearch.PokemonSearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.poke.presentation.pokemonFavorite.PokemonFavoriteViewModel.PokemonFavoriteState
@@ -93,8 +95,8 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
 
     }
 
-    private fun openDetail(film: com.example.poke.domain.entity.Pokemon) {
-        //parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
+    private fun openDetail(pokemon: Pokemon) {
+        parentFragmentManager.navigate(PokemonDetailFragment.newInstance(pokemon))
     }
 
 }

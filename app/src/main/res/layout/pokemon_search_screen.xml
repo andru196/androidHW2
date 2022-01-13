@@ -31,7 +31,8 @@
                 android:hint="@string/pokemon_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/search_pokemon_back_image"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:boxBackgroundColor="@color/white">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/search_pokemon_name_edit"
                     android:layout_width="match_parent"
@@ -40,6 +41,7 @@
                     android:maxLength="40"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_result_list"
                 android:layout_width="match_parent"

@@ -7,41 +7,59 @@
     android:orientation="horizontal"
     android:padding="8dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/item_self"
-            android:layout_width="128dp"
-            android:layout_height="150dp"
-            app:cardBackgroundColor="@color/teal_700"
-            app:cardCornerRadius="10dp"
-            tools:ignore="MissingConstraints">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_self"
+        android:layout_width="128dp"
+        android:layout_height="170dp"
+        android:outlineAmbientShadowColor="@color/cardview_shadow_end_color"
+        android:outlineSpotShadowColor="@color/cardview_shadow_start_color"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:cardBackgroundColor="@color/teal_700"
+        app:cardCornerRadius="5dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/item_pokemon_name"
+                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
                 android:layout_marginTop="80dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="left"
-                android:paddingStart="15dp"
+                android:id="@+id/item_pokemon_name"
                 android:text="Pika"
+                android:textSize="18sp"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/item_pokemon_id"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="105dp"
-                android:layout_marginEnd="20dp"
-                android:paddingStart="15dp"
-                android:gravity="left"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/item_pokemon_id_subject"
+                app:layout_constraintStart_toStartOf="parent"
                 android:text="id"
                 android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
                 android:textSize="14sp" />
-        </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/item_pokemon_id_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/item_pokemon_id"
+                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
+                tools:text="100009" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -24,8 +24,7 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         }
 
         private const val POKEMON_DETAIL_DATA_KEY = "POKEMON_DETAIL_DATA_KEY"
-//        const val POKEMON_DETAIL_RESULT_KEY = "POKEMON_DETAIL_RESULT_KEY"
-//        const val POKEMON_DETAIL_RATING_KEY = "POKEMON_DETAIL_RATING_KEY"
+
 
     }
 
@@ -44,6 +43,7 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.pokemonState.observe(viewLifecycleOwner) { pokemon ->
+            viewBinding.pokeDetailName.text = pokemon.name
             viewBinding.pokeDetailIdSubject.text = pokemon.id.toString()
             viewBinding.pokeDetailHeightSubject.text = pokemon.height.toString()
             viewBinding.pokeDetailIsDefaultSubject.text = pokemon.is_default.toString()
@@ -55,9 +55,13 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         viewBinding.pokeDetailBack.setOnClickListener {
             viewModel.onBackPressed()
         }
+
+
     }
 
     private fun closeScreen() {
         parentFragmentManager.popBackStack()
     }
+
+
 }

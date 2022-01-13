@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokemonFavoriteViewModel @Inject constructor(
-    //private val pokeRepository: PokeRepository,
     private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
     private val MAX_FAV  = 20
@@ -51,7 +50,7 @@ class PokemonFavoriteViewModel @Inject constructor(
         })
     }
 
-    fun onPokemonClicked(pokemon: com.example.poke.domain.entity.Pokemon) {
+    fun onPokemonClicked(pokemon: Pokemon) {
         _openDetailAction.value = pokemon
         viewModelScope.launchWithErrorHandler {
             val pokemons = databaseRepository.addOpen(pokemonId = pokemon.id)

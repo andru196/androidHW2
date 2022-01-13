@@ -36,7 +36,7 @@ class PokemonHorizontalAdapter(
         with(holder.binding) {
             val item = getItem(position)
             itemPokemonName.text = item.name
-            itemPokemonId.text = item.id.toString()
+            itemPokemonIdSubject.text = item.id.toString()
             itemSelf.setCardBackgroundColor(Color.parseColor("#${"%06x".format(item.color)}"))
             root.setOnClickListener { onPokemonClicked(item) }
         }
