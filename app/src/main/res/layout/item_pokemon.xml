@@ -9,11 +9,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_self"
-        android:layout_width="128dp"
-        android:layout_height="170dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         app:cardBackgroundColor="@color/teal_700"
-        app:cardCornerRadius="5dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="10dp"
         android:alpha="0.8"
         tools:ignore="MissingConstraints">
 
@@ -21,6 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
             >
 
             <TextView

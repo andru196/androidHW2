@@ -26,12 +26,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="@string/your_favorite_pokemons"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+            style="@style/textStyle"
+            android:textStyle="bold"
+            android:text="@string/your_favorite_pokemons" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +45,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:paddingBottom="20dp" />
+            android:paddingBottom="10dp" />
 
         <ProgressBar
             android:id="@+id/load_favorite_poke_progress"
@@ -61,17 +58,15 @@
             tools:visibility="invisible" />
 
         <TextView
+            style="@style/textStyle"
             android:id="@+id/load_favorite_poke_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/favorites_poke_view"
             android:text="@string/top_film_error_text"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+
             tools:visibility="invisible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,13 +85,9 @@
         app:layout_constraintTop_toBottomOf="@id/favorites_guideline"
        >
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:padding="10dp"
-            android:text="@string/most_popular_pokemons"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            style="@style/textStyle"
+            android:textStyle="bold"
+            android:text="@string/most_popular_pokemons" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@id/most_popular_poke_layout"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="-16dp">
-
+d
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/most_popular_poke_view"
             android:layout_width="match_parent"
@@ -127,15 +118,12 @@
             tools:visibility="invisible" />
 
         <TextView
+            style="@style/textStyle"
             android:id="@+id/load_popular_poke_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/top_film_error_text"
-            android:textColor="@color/black"
-            android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="invisible" />
 

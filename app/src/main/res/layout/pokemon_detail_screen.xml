@@ -29,7 +29,6 @@
         android:id="@+id/poke_detail_card"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/poke_detail_back"
@@ -48,9 +47,8 @@
                 style="@style/textStyle"
                 android:layout_marginTop="100dp"
                 android:id="@+id/poke_detail_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textSize="28sp"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_id_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,8 +57,6 @@
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/poke_detail_id_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:labelFor="@id/poke_detail_id_subject"
                 android:text="@string/id"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_height"
@@ -70,8 +66,7 @@
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/poke_detail_id_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_height_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_name"
@@ -80,8 +75,7 @@
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/poke_detail_height"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
                 android:labelFor="@id/poke_detail_height_subject"
                 android:text="@string/height"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_weight"
@@ -91,8 +85,7 @@
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/poke_detail_height_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
                 app:layout_constraintBottom_toTopOf="@+id/poke_detail_id_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poke_detail_weight_subject"
