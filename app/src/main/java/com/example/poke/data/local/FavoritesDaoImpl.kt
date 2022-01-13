@@ -19,7 +19,7 @@ class FavoritesDaoImpl @Inject constructor(
         private const val FAVORITES_KEY = "FAVORITES_KEY"
     }
 
-    private var films: List<Pokemon>
+    private var pokemons: List<Pokemon>
         get() {
             return sharedPreferences.getString(FAVORITES_KEY, null)?.let {
                 Json.decodeFromString(it)
@@ -31,22 +31,26 @@ class FavoritesDaoImpl @Inject constructor(
             }
         }
 
-    private val state: Flow<List<Pokemon>> = MutableStateFlow(films)
+    private var state: List<Pokemon> = pokemons
 
-    override fun add(film: Pokemon) {
-        films += film
+    override suspend fun add(pokemon: Pokemon) {
+        pokemons += pokemon
+        state += pokemon
+
     }
 
-    override fun delete(film: Pokemon) {
-        films -= film
+    override suspend fun delete(pokemon: Pokemon) {
+        pokemons -= pokemon
+        state -= pokemon
+
     }
 
-    override fun isInFavorites(film: Pokemon): Boolean =
-        films.contains(film)
+    override suspend fun isInFavorites(pokemon: Pokemon): Boolean =
+        pokemons.contains(pokemon)
 
-    override fun getFavorites(): Flow<List<Pokemon>> = state
+    override fun getFavorites(): List<Pokemon> = state
 
-    override fun getCount(): Flow<Int> {
-        return state.map { it.size }
+    override fun getCount(): Int {
+        return state.size
     }
 }

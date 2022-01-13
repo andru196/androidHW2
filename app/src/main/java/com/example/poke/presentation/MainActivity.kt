@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
 
-    private val viewModel by viewModels<MainActivityViewModel>()
     private val viewBinding by viewBinding(MainActivityBinding::bind)
 
 
@@ -30,9 +29,7 @@ class MainActivity : BaseActivity() {
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
 
-//            viewModel.favoritesCountState.observe(this) {
-//                viewBinding.mainActivityBottom.getOrCreateBadge(R.id.bottom_menu_favorites).number = it
-//            }
+
         }
     }
 }

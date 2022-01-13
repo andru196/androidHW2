@@ -63,6 +63,15 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
             viewModel.onBackPressed()
         }
 
+        viewModel.favoritesState.observe(viewLifecycleOwner) {isInFavorites ->
+            viewBinding.pokeDetailFavorites.setImageResource(
+                if (isInFavorites) R.drawable.ic_favorite_24 else R.drawable.ic_favorite_not_in_24
+            )
+        }
+        viewBinding.pokeDetailFavorites.setOnClickListener {
+            viewModel.onFavoritesClicked()
+        }
+
 
     }
 
