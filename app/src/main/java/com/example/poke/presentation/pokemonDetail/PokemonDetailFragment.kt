@@ -45,7 +45,8 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         viewModel.pokemonState.observe(viewLifecycleOwner) { pokemon ->
             viewBinding.pokeDetailName.text = pokemon.name
             viewBinding.pokeDetailIdSubject.text = pokemon.id.toString()
-            viewBinding.pokeDetailHeightSubject.text = pokemon.height.toString()
+            viewBinding.pokeDetailHeightSubject.text = (pokemon.height * 10).toString()
+            viewBinding.pokeDetailWeightSubject.text = (pokemon.weight / 10).toString()
             viewBinding.pokeDetailIsDefaultSubject.text = pokemon.is_default.toString()
             viewBinding.pokeDetailBaseExpSubject.text = pokemon.baseExp.toString()
         }

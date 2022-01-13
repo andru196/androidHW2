@@ -54,27 +54,26 @@
             android:id="@+id/load_favorite_poke_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/favorites_poke_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favorites_poke_layout"
+            app:layout_constraintStart_toStartOf="@+id/favorites_poke_view"
+            app:layout_constraintTop_toTopOf="@+id/favorites_poke_view"
             tools:visibility="invisible" />
 
         <TextView
             android:id="@+id/load_favorite_poke_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/favorites_poke_view"
             android:text="@string/top_film_error_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:paddingLeft="10dp"
-            tools:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favorites_poke_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="invisible" />
 
-            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -125,22 +124,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="invisible"
-            />
+            tools:visibility="invisible" />
 
         <TextView
             android:id="@+id/load_popular_poke_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:text="@string/top_film_error_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:paddingLeft="10dp"
-            tools:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-             />
+            tools:visibility="invisible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
