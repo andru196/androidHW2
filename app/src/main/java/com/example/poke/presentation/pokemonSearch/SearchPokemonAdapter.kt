@@ -1,6 +1,9 @@
 package com.example.poke.presentation.pokemonSearch
 
+import android.animation.ArgbEvaluator
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -35,9 +38,25 @@ class SearchPokemonAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with (holder.binding) {
             val item = getItem(position)
+
             itemPokemonName.text = item.name
-            root.setBackgroundColor(Color.parseColor("#40${"%06x".format(item.color)}"))
+            val gd = GradientDrawable()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                gd.shape = (searchIndicator.background as GradientDrawable).shape
+            }
+            searchIndicator.background = gd
+            gd.colors = intArrayOf(
+                Color.parseColor("#${"%06x".format(item.color)}"),
+                Color.parseColor("#80${"%06x".format(item.color)}")
+            )
+
+//            (searchIndicator.background as GradientDrawable).setColors(intArrayOf(
+//                Color.parseColor("#${"%06x".format(item.color)}"),
+//                Color.parseColor("#80${"%06x".format(item.color)}")
+//            ))
+            root.setBackgroundColor(Color.parseColor("#10${"%06x".format(item.color)}"))
             root.setOnClickListener { onPokemonClicked(item) }
+
         }
     }
 
