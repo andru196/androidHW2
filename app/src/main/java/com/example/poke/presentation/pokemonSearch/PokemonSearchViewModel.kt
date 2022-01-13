@@ -67,6 +67,7 @@ class PokemonSearchViewModel @Inject constructor(
 
     fun searchTextChanged(text: String) {
         val lastState = (_screenState.value as? PokemonSearchState.Success)?.pokemons
+            ?: (_screenState.value as? PokemonSearchState.Editing)?.pokemons
         _screenState.value = PokemonSearchState.Loading()
         viewModelScope.launchWithErrorHandler {
             val pokemons = databaseRepository.getPokemonByName(text)
