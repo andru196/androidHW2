@@ -1,5 +1,10 @@
 package com.example.poke.presentation.pokemonDetail
 
+import android.animation.ArgbEvaluator
+import android.animation.TimeAnimator
+import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -48,6 +53,7 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
             viewBinding.pokeDetailHeightSubject.text = pokemon.height.toString()
             viewBinding.pokeDetailIsDefaultSubject.text = pokemon.is_default.toString()
             viewBinding.pokeDetailBaseExpSubject.text = pokemon.baseExp.toString()
+            someFun(viewBinding.pokeDetailCard, pokemon.color)
         }
         viewModel.backAction.observe(viewLifecycleOwner) {
             closeScreen()
@@ -61,6 +67,31 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
 
     private fun closeScreen() {
         parentFragmentManager.popBackStack()
+    }
+
+    private fun someFun(content: View, color: Int) {
+        val start = Color.parseColor("#${"%06x".format(color)}")
+        val mid = Color.parseColor("#${"%06x".format(color.inv())}")
+        val end = start
+
+        content.background = GradientDrawable()
+        val gradient = content.background as GradientDrawable
+
+        val evaluator = ArgbEvaluator()
+        val animator = TimeAnimator.ofFloat(0.0f, 1.0f)
+        animator.duration = 15000
+        animator.repeatCount = ValueAnimator.INFINITE
+        animator.repeatMode = ValueAnimator.REVERSE
+        animator.addUpdateListener {
+            val fraction = it.animatedFraction
+            val newStart = evaluator.evaluate(fraction, start, end) as Int
+            val newMid = evaluator.evaluate(fraction, mid, start) as Int
+            val newEnd = evaluator.evaluate(fraction, end, mid) as Int
+
+            gradient.colors = intArrayOf(newStart, newMid, newEnd)
+        }
+
+        animator.start()
     }
 
 
