@@ -40,6 +40,8 @@
             android:layout_width="300dp"
             android:layout_height="400dp"
             android:padding="10dp"
+            android:background="@color/my"
+
             >
 
             <TextView
