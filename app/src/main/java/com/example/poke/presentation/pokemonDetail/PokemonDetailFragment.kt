@@ -83,9 +83,9 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         val start = Color.parseColor("#${"%06x".format(color)}")
         val mid = Color.parseColor("#${"%06x".format(color.inv())}")
         val end = start
-
         content.background = GradientDrawable()
         val gradient = content.background as GradientDrawable
+        gradient.cornerRadius = 20F
 
         val evaluator = ArgbEvaluator()
         val animator = TimeAnimator.ofFloat(0.0f, 1.0f)

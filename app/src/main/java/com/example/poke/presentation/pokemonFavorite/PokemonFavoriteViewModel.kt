@@ -38,10 +38,6 @@ class PokemonFavoriteViewModel @Inject constructor(
     val screenStateSearched: LiveData<PokemonFavoriteState> = _screenStateSearched
 
 
-    init {
-
-    }
-
     fun onPokemonClicked(pokemon: Pokemon) {
         _openDetailAction.value = pokemon
         viewModelScope.launchWithErrorHandler {
