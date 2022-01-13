@@ -12,6 +12,8 @@ import com.example.poke.databinding.PokemonSearchScreenBinding
 import com.example.poke.presentation.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.poke.domain.entity.Pokemon
+import com.example.poke.presentation.common.navigate
+import com.example.poke.presentation.pokemonDetail.PokemonDetailFragment
 
 @AndroidEntryPoint
 class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
@@ -77,8 +79,8 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
         parentFragmentManager.popBackStack()
     }
 
-    private fun openDetail(film: Pokemon) {
-        //parentFragmentManager.navigate(FilmDetailFragment.newInstance(film))
+    private fun openDetail(pokemon: Pokemon) {
+        parentFragmentManager.navigate(PokemonDetailFragment.newInstance(pokemon))
     }
 
 
