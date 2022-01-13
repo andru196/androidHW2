@@ -1,6 +1,7 @@
 package com.example.poke.presentation.pokemonFavorite
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -37,6 +38,7 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
+
         viewModel.screenStateOpened.observe(viewLifecycleOwner) {
             when (it) {
                 is PokemonFavoriteState.Error -> {
@@ -51,6 +53,7 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
                     viewBinding.favoritesPokeView.isVisible = false
                 }
                 is PokemonFavoriteState.Success -> {
+                    Log.d("pokeCount", it.pokemons.size.toString())
                     pokemonHorizontalAdapter.submitList(it.pokemons)
                     viewBinding.loadFavoritePokeError.isVisible = false
                     viewBinding.loadFavoritePokeProgress.isVisible = false
@@ -97,6 +100,12 @@ class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {
 
     private fun openDetail(pokemon: Pokemon) {
         parentFragmentManager.navigate(PokemonDetailFragment.newInstance(pokemon))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("OnResume", "OnResume do updating")
+        viewModel.onFragmentResume()
     }
 
 }

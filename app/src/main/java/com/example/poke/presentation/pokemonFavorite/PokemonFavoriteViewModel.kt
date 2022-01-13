@@ -4,16 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.poke.data.local.FavoritesDao
 import com.example.poke.domain.DatabaseRepository
 import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonFavoriteViewModel @Inject constructor(
-    private val databaseRepository: DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
+    private val favoritesDao: FavoritesDao
 ) : ViewModel() {
     private val MAX_FAV  = 20
 
@@ -33,21 +39,7 @@ class PokemonFavoriteViewModel @Inject constructor(
 
 
     init {
-        _screenStateOpened.value = PokemonFavoriteState.Loading()
-        _screenStateSearched.value = PokemonFavoriteState.Loading()
 
-        viewModelScope.launchWithErrorHandler(block = {
-            val pokemons = getMostPopular()
-            _screenStateOpened.value = PokemonFavoriteState.Success(pokemons)
-        }, onError = {
-            _screenStateOpened.value = PokemonFavoriteState.Error(it)
-        })
-        viewModelScope.launchWithErrorHandler(block = {
-            val pokemons = getMostSearched()
-            _screenStateSearched.value = PokemonFavoriteState.Success(pokemons)
-        }, onError = {
-            _screenStateOpened.value = PokemonFavoriteState.Error(it)
-        })
     }
 
     fun onPokemonClicked(pokemon: Pokemon) {
@@ -56,6 +48,7 @@ class PokemonFavoriteViewModel @Inject constructor(
             val pokemons = databaseRepository.addOpen(pokemonId = pokemon.id)
         }
     }
+
 
 
     private suspend fun getMostPopular(): List<Pokemon> {
@@ -72,6 +65,8 @@ class PokemonFavoriteViewModel @Inject constructor(
         return realRes.reversed()
     }
 
+
+
     private suspend fun getMostSearched(): List<Pokemon> {
         val grouped = databaseRepository.getSearches()
             .flatMap {  x-> x.results }
@@ -87,9 +82,32 @@ class PokemonFavoriteViewModel @Inject constructor(
         return realRes.reversed()
     }
 
+    fun onFragmentResume() {
+
+        _screenStateOpened.value = PokemonFavoriteState.Loading()
+        _screenStateSearched.value = PokemonFavoriteState.Loading()
+
+        viewModelScope.launchWithErrorHandler(block = {
+            val pokemons = favoritesDao.getFavorites()
+                _screenStateOpened.value = PokemonFavoriteState.Success(pokemons)
+
+        }, onError = {
+            _screenStateOpened.value = PokemonFavoriteState.Error(it)
+        })
+        viewModelScope.launchWithErrorHandler(block = {
+            val pokemons = getMostSearched()
+            _screenStateSearched.value = PokemonFavoriteState.Success(pokemons)
+        }, onError = {
+            _screenStateOpened.value = PokemonFavoriteState.Error(it)
+        })
+
+    }
+
+
     sealed class PokemonFavoriteState {
         class Loading() : PokemonFavoriteState()
         class Success(val pokemons: List<Pokemon>) : PokemonFavoriteState()
         class Error(val throwable: Throwable) : PokemonFavoriteState()
     }
+
 }

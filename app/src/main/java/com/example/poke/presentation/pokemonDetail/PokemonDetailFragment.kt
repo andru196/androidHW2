@@ -50,7 +50,8 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         viewModel.pokemonState.observe(viewLifecycleOwner) { pokemon ->
             viewBinding.pokeDetailName.text = pokemon.name
             viewBinding.pokeDetailIdSubject.text = pokemon.id.toString()
-            viewBinding.pokeDetailHeightSubject.text = pokemon.height.toString()
+            viewBinding.pokeDetailHeightSubject.text = (pokemon.height * 10).toString()
+            viewBinding.pokeDetailWeightSubject.text = (pokemon.weight / 10).toString()
             viewBinding.pokeDetailIsDefaultSubject.text = pokemon.is_default.toString()
             viewBinding.pokeDetailBaseExpSubject.text = pokemon.baseExp.toString()
             someFun(viewBinding.pokeDetailCard, pokemon.color)
@@ -60,6 +61,15 @@ class PokemonDetailFragment : BaseFragment(R.layout.pokemon_detail_screen) {
         }
         viewBinding.pokeDetailBack.setOnClickListener {
             viewModel.onBackPressed()
+        }
+
+        viewModel.favoritesState.observe(viewLifecycleOwner) {isInFavorites ->
+            viewBinding.pokeDetailFavorites.setImageResource(
+                if (isInFavorites) R.drawable.ic_favorite_24 else R.drawable.ic_favorite_not_in_24
+            )
+        }
+        viewBinding.pokeDetailFavorites.setOnClickListener {
+            viewModel.onFavoritesClicked()
         }
 
 
