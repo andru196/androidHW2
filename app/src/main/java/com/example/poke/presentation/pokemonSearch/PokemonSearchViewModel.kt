@@ -71,9 +71,9 @@ class PokemonSearchViewModel @Inject constructor(
         viewModelScope.launchWithErrorHandler {
             val pokemons = databaseRepository.getPokemonByName(text)
             if (pokemons.isNotEmpty())
-                _screenState.postValue(PokemonSearchState.Success(pokemons))
+                _screenState.postValue(PokemonSearchState.Editing(pokemons))
             else if (lastState != null)
-                _screenState.postValue(PokemonSearchState.Success(lastState))
+                _screenState.postValue(PokemonSearchState.Editing(lastState))
         }
     }
 
@@ -91,5 +91,6 @@ class PokemonSearchViewModel @Inject constructor(
 sealed class PokemonSearchState {
     class Loading(): PokemonSearchState()
     class Success(val pokemons: List<Pokemon>): PokemonSearchState()
+    class Editing(val pokemons: List<Pokemon>): PokemonSearchState()
     class Error(val throwable: Throwable) : PokemonSearchState()
 }

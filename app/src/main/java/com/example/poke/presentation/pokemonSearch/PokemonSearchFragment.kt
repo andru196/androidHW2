@@ -35,24 +35,28 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
         }
 
         viewModel.screenState.observe(viewLifecycleOwner) { state ->
+            viewBinding.searchPokemonError.isVisible = false
+            viewBinding.searchProgress.isVisible = false
+            viewBinding.searchResultList.isVisible = true
+            viewBinding.searchSubmit.isEnabled = true
+            viewBinding.searchSubmit.isVisible = true
+
             when (state) {
                 is PokemonSearchState.Error -> {
                     viewBinding.searchPokemonError.isVisible = true
-                    viewBinding.searchProgress.isVisible = false
                     viewBinding.searchResultList.isVisible = false
                 }
                 is PokemonSearchState.Loading -> {
-                    viewBinding.searchPokemonError.isVisible = false
                     viewBinding.searchProgress.isVisible = true
                     viewBinding.searchResultList.isVisible = false
                     viewBinding.searchSubmit.isEnabled = false
                 }
                 is PokemonSearchState.Success -> {
                     searchPokemonAdapter.submitList(state.pokemons)
-                    viewBinding.searchPokemonError.isVisible = false
-                    viewBinding.searchProgress.isVisible = false
-                    viewBinding.searchResultList.isVisible = true
-                    viewBinding.searchSubmit.isEnabled = true
+                    viewBinding.searchSubmit.isVisible = false
+                }
+                is PokemonSearchState.Editing -> {
+                    searchPokemonAdapter.submitList(state.pokemons)
                 }
             }
 
