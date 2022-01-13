@@ -3,6 +3,7 @@ package com.example.poke.presentation.pokemonFavorite
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.alpha
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -35,9 +36,10 @@ class PokemonHorizontalAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             val item = getItem(position)
+            var color = Color.parseColor("#aa${"%06x".format(item.color)}")
             itemPokemonName.text = item.name
             itemPokemonIdSubject.text = item.id.toString()
-            itemSelf.setCardBackgroundColor(Color.parseColor("#${"%06x".format(item.color)}"))
+            itemSelf.setCardBackgroundColor(color)
             root.setOnClickListener { onPokemonClicked(item) }
         }
     }
