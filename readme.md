@@ -12,7 +12,7 @@
 - Screen State и Fragment Animation
 
 
-В качестве демонстрации реализована мобильное приложение Poke. \
+В качестве демонстрации реализовано мобильное приложение Poke. \
 ![Главный экран](https://github.com/andru196/androidHW2/blob/master/imgs/first_screen.png) \
 На главном экране реализованы два фрагмента - "Любимые покемоны" и "Наиболее популярные покемоны" и карточки с детальной информацией о них \
 ![Экран с детальной информацией](https://github.com/andru196/androidHW2/blob/master/imgs/detail_screen.png) \
