@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.poke.databinding.ItemPokemonBinding
 import com.example.poke.databinding.ItemSearchPokemonBinding
+
 import com.example.poke.domain.entity.Pokemon
 import kotlin.reflect.KFunction1
 
