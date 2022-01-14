@@ -33,11 +33,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/poke_detail_back"
         android:background="@drawable/grad"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardElevation="2dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="10dp"
             android:background="@color/my"
 
@@ -45,7 +51,7 @@
 
             <TextView
                 style="@style/textStyle"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="70dp"
                 android:id="@+id/poke_detail_name"
                 android:textStyle="bold"
                 android:textSize="28sp"
@@ -61,15 +67,15 @@
                 android:text="@string/id"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_height"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/poke_detail_name" />
+                app:layout_constraintTop_toBottomOf="@id/poke_detail_name"
+                android:layout_marginTop="50dp"/>
 
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/poke_detail_id_subject"
-
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_height_subject"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/poke_detail_name"
+                app:layout_constraintTop_toTopOf="@id/poke_detail_id_label"
                 tools:text="#001023" />
 
             <TextView

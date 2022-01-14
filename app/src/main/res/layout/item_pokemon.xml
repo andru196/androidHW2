@@ -5,20 +5,26 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:padding="10dp">
+    >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/item_self"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="150dp"
         android:layout_height="200dp"
         app:cardBackgroundColor="@color/teal_700"
         app:cardCornerRadius="10dp"
-        android:alpha="0.8"
-        tools:ignore="MissingConstraints">
+        app:cardUseCompatPadding="true"
+        app:cardElevation="2dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:id="@+id/item_self"
+
             android:padding="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
 
@@ -27,11 +33,14 @@
             <TextView
                 style="@style/textStyle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
-                android:layout_marginTop="80dp"
                 android:id="@+id/item_pokemon_name"
+                app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
+
                 android:text="Pika"
+                android:paddingEnd="10dp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="60dp"
                 />
 
             <TextView
@@ -40,7 +49,7 @@
                 android:labelFor="@id/item_pokemon_id_subject"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="id"
-                android:textSize="14sp"
+                android:textSize="16sp"
 
                 app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
                 />
@@ -48,7 +57,7 @@
             <TextView
                 style="@style/textStyle"
                 android:id="@+id/item_pokemon_id_subject"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/item_pokemon_id"
                 app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
                 tools:text="100009"

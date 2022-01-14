@@ -1,17 +1,11 @@
 <resources>
     <string name="app_name">Poke</string>
 
-    <string name="item_film_rating_pattern">Рейтинг ожидания %1$s</string>
-    <string name="top_film_error_text">Во время загрузки произошла ошибка</string>
-    <string name="search_year_from_text">Год от</string>
-    <string name="search_year_to_text">Год до</string>
-    <string name="search_submit">Поиск</string>
-    <string name="city_request_text">Запросить местоположение</string>
-    <string name="menu_bottom_fav">Любимки</string>
-    <string name="menu_bottom_tops">Список топов</string>
-    <string name="pokemon_name">Имя покемона</string>
-    <string name="your_favorite_pokemons">Your Favorite Pokemons</string>
-    <string name="most_popular_pokemons">Most Popular Pokemons</string>
+    <string name="pokemon_search_error_text">An error occurred while loading</string>
+    <string name="search_submit">Search</string>
+    <string name="pokemon_name">Pokemon name</string>
+    <string name="your_favorite_pokemons">Your favorite pokemons</string>
+    <string name="most_popular_pokemons">Most popular pokemons</string>
     <string name="base_exp">Base Experience</string>
     <string name="is_default">Is default</string>
     <string name="weight">Weight</string>

@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/favorites_poke_view"
-            android:text="@string/top_film_error_text"
+            android:text="@string/pokemon_search_error_text"
 
             tools:visibility="invisible" />
 
@@ -83,7 +83,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/favorites_guideline"
-       >
+        android:padding="16dp"
+
+        >
         <TextView
             style="@style/textStyle"
             android:textStyle="bold"
@@ -123,7 +125,7 @@ d
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/top_film_error_text"
+            android:text="@string/pokemon_search_error_text"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="invisible" />
 

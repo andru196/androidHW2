@@ -39,7 +39,7 @@ class PokemonHorizontalAdapter(
             var color = Color.parseColor("#aa${"%06x".format(item.color)}")
             itemPokemonName.text = item.name
             itemPokemonIdSubject.text = item.id.toString()
-            itemSelf.setCardBackgroundColor(color)
+            itemSelf.setBackgroundColor(color)
             root.setOnClickListener { onPokemonClicked(item) }
         }
     }
