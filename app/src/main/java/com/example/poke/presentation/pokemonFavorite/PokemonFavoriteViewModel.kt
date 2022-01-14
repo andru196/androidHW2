@@ -10,18 +10,14 @@ import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonFavoriteViewModel @Inject constructor(
     private val databaseRepository: DatabaseRepository,
-    private val favoritesDao: FavoritesDao
+    private val favoritesDao: FavoritesDao,
 ) : ViewModel() {
-    private val MAX_FAV  = 20
+    private val MAX_FAV = 20
 
     private val _openDetailAction = SingleLiveEvent<Pokemon>()
     val openDetailAction: LiveData<Pokemon> = _openDetailAction
@@ -45,8 +41,6 @@ class PokemonFavoriteViewModel @Inject constructor(
         }
     }
 
-
-
     private suspend fun getMostPopular(): List<Pokemon> {
         val grouped = databaseRepository.getOpenedPokemon()
             .groupBy { x -> x.id }
@@ -54,24 +48,22 @@ class PokemonFavoriteViewModel @Inject constructor(
         for (g in grouped)
             result[g.value.last()] = g.value.size
         val realRes = ArrayList<Pokemon>()
-        result.values.sortedBy{x->x}.forEach { z ->
+        result.values.sortedBy { x -> x }.forEach { z ->
             if (realRes.size < MAX_FAV)
                 realRes.addAll(result.filter { x -> x.value == z }.keys)
         }
         return realRes.reversed()
     }
 
-
-
     private suspend fun getMostSearched(): List<Pokemon> {
         val grouped = databaseRepository.getSearches()
-            .flatMap {  x-> x.results }
+            .flatMap { x -> x.results }
             .groupBy { x -> x.id }
         val result = mutableMapOf<Pokemon, Int>()
         for (g in grouped)
             result[g.value.last()] = g.value.size
         val realRes = ArrayList<Pokemon>()
-        result.values.sortedBy{x->x}.forEach { z ->
+        result.values.sortedBy { x -> x }.forEach { z ->
             if (realRes.size < MAX_FAV)
                 realRes.addAll(result.filter { x -> x.value == z }.keys)
         }
@@ -85,7 +77,7 @@ class PokemonFavoriteViewModel @Inject constructor(
 
         viewModelScope.launchWithErrorHandler(block = {
             val pokemons = favoritesDao.getFavorites()
-                _screenStateOpened.value = PokemonFavoriteState.Success(pokemons)
+            _screenStateOpened.value = PokemonFavoriteState.Success(pokemons)
 
         }, onError = {
             _screenStateOpened.value = PokemonFavoriteState.Error(it)
@@ -96,14 +88,11 @@ class PokemonFavoriteViewModel @Inject constructor(
         }, onError = {
             _screenStateOpened.value = PokemonFavoriteState.Error(it)
         })
-
     }
-
 
     sealed class PokemonFavoriteState {
         class Loading() : PokemonFavoriteState()
         class Success(val pokemons: List<Pokemon>) : PokemonFavoriteState()
         class Error(val throwable: Throwable) : PokemonFavoriteState()
     }
-
 }

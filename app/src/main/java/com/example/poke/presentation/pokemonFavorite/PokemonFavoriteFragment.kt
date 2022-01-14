@@ -13,9 +13,9 @@ import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.BaseFragment
 import com.example.poke.presentation.common.navigate
 import com.example.poke.presentation.pokemonDetail.PokemonDetailFragment
+import com.example.poke.presentation.pokemonFavorite.PokemonFavoriteViewModel.PokemonFavoriteState
 import com.example.poke.presentation.pokemonSearch.PokemonSearchFragment
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.poke.presentation.pokemonFavorite.PokemonFavoriteViewModel.PokemonFavoriteState
 
 @AndroidEntryPoint
 class PokemonFavoriteFragment : BaseFragment(R.layout.top_poke_screen) {

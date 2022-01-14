@@ -1,6 +1,5 @@
 package com.example.poke.data.database
 
-import android.util.Log
 import com.example.poke.data.database.open.OpenItemDao
 import com.example.poke.data.database.open.OpenItemEntity
 import com.example.poke.data.database.pokemon.PokemonEntity

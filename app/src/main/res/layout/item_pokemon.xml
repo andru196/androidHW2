@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="150dp"
         android:layout_height="200dp"
         app:cardBackgroundColor="@color/teal_700"
         app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true"
         app:cardElevation="2dp"
-        >
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_self"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:id="@+id/item_self"
 
-            android:padding="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="10dp"
 
             >
 
             <TextView
-                style="@style/textStyle"
-                app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/item_pokemon_name"
-                app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
+                style="@style/textStyle"
+                android:layout_marginTop="60dp"
+                android:paddingEnd="10dp"
 
                 android:text="Pika"
-                android:paddingEnd="10dp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="60dp"
-                />
+                app:layout_constraintBottom_toTopOf="@id/item_pokemon_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/item_pokemon_id"
+                style="@style/textStyle"
                 android:labelFor="@id/item_pokemon_id_subject"
-                app:layout_constraintStart_toStartOf="parent"
                 android:text="id"
                 android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
 
-                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
-                />
+                app:layout_constraintTop_toBottomOf="@id/item_pokemon_name" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/item_pokemon_id_subject"
+                style="@style/textStyle"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/item_pokemon_id"
                 app:layout_constraintTop_toBottomOf="@id/item_pokemon_name"
-                tools:text="100009"
-               />
+                tools:text="100009" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

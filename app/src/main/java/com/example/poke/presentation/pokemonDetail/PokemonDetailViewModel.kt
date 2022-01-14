@@ -1,4 +1,5 @@
 package com.example.poke.presentation.pokemonDetail
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,6 @@ import com.example.poke.domain.PokeRepository
 import com.example.poke.domain.entity.Pokemon
 import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
-
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -60,8 +60,6 @@ class PokemonDetailViewModel @AssistedInject constructor(
             }
         }
     }
-
-
 }
 
 class PokemonDetailViewModelFactory @Inject constructor(

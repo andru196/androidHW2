@@ -29,7 +29,7 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
         super.onViewCreated(view, savedInstanceState)
 
         val searchPokemonAdapter = SearchPokemonAdapter(viewModel::onPokemonClicked)
-        with (viewBinding.searchResultList) {
+        with(viewBinding.searchResultList) {
             adapter = searchPokemonAdapter
             layoutManager = LinearLayoutManager(context)
         }
@@ -83,7 +83,6 @@ class PokemonSearchFragment : BaseFragment(R.layout.pokemon_search_screen) {
         viewBinding.searchSubmit.setOnClickListener {
             viewModel.pokemonSearch(viewBinding.searchPokemonNameEdit.text.toString())
         }
-
     }
 
     private fun goBack() {

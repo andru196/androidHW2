@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="10dp">
+
     <TextView
-        style="@style/textStyle"
         android:id="@+id/item_pokemon_name"
+        style="@style/textStyle"
         android:layout_width="0dp"
-        android:textSize="24sp"
         android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        tool:text="pikachu"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="pikachu" />
+
     <View
         android:id="@+id/search_indicator"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:layout_constraintCircleRadius="10dp"
-        app:layout_constraintCircleAngle="1"
+        android:layout_margin="5dp"
         android:background="@drawable/oval"
         android:padding="5dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:flow_verticalAlign="center"
+        app:layout_constraintCircleAngle="1"
+        app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="5dp"
-        app:flow_verticalAlign="center"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

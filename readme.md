@@ -22,5 +22,5 @@
 
 ## Демонстрация работы
 ![Портретная ориентация](https://github.com/andru196/androidHW2/blob/master/imgs/port.gif) \
-![Альюомная ориентация](https://github.com/andru196/androidHW2/blob/master/imgs/land.gif) \
+![Альюомная ориентация](https://github.com/andru196/androidHW2/blob/master/imgs/land.gif) 
 

@@ -12,16 +12,14 @@ import com.example.poke.presentation.common.SingleLiveEvent
 import com.example.poke.presentation.common.launchWithErrorHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonSearchViewModel @Inject constructor(
     private val pokeRepository: PokeRepository,
-    private val databaseRepository: DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
 ) : ViewModel() {
-//    private var searchJob: Job? = null
 
 
     private val _openDetailAction = SingleLiveEvent<Pokemon>()
@@ -39,7 +37,7 @@ class PokemonSearchViewModel @Inject constructor(
 
 
     init {
-        viewModelScope.launchWithErrorHandler(block =  {
+        viewModelScope.launchWithErrorHandler(block = {
             _screenState.value = PokemonSearchState.Success(emptyList())
         }, onError = {
             _screenState.value = PokemonSearchState.Error(it)
@@ -56,7 +54,6 @@ class PokemonSearchViewModel @Inject constructor(
     fun pokemonSearch(text: String) {
         var hasError = false
         if (text.isBlank()) {
-//            return
             _searchErrorState.value = SearchState.EMPTY
             var hasError = true
         }
@@ -64,27 +61,26 @@ class PokemonSearchViewModel @Inject constructor(
         _searchErrorState.value = SearchState.VALID
         _loadingState.value = true
 
-        viewModelScope.launchWithErrorHandler(block = {
-            withContext(Dispatchers.IO) {
-                val pokemons = pokeRepository.searchPokemons(text)
-                _screenState.postValue(PokemonSearchState.Success(pokemons))
-                saveResult(text, pokemons)
-            }
-        }, onError = {
-            _screenState.value = PokemonSearchState.Error(it)
-        },
+        viewModelScope.launchWithErrorHandler(
+            block = {
+                withContext(Dispatchers.IO) {
+                    val pokemons = pokeRepository.searchPokemons(text)
+                    _screenState.postValue(PokemonSearchState.Success(pokemons))
+                    saveResult(text, pokemons)
+                }
+            },
+            onError = {
+                _screenState.value = PokemonSearchState.Error(it)
+            },
         )
     }
 
     fun searchTextChanged(text: String) {
         val lastState = (_screenState.value as? PokemonSearchState.Success)?.pokemons
-//            ?: (_screenState.value as? PokemonSearchState.Editing)?.pokemons
-//        _screenState.value = PokemonSearchState.Loading()
         viewModelScope.launchWithErrorHandler {
             val pokemons = databaseRepository.getPokemonByName(text)
             if (pokemons.isNotEmpty())
                 _screenState.postValue(PokemonSearchState.Editing(pokemons))
-
             else if (lastState != null)
                 _screenState.postValue(PokemonSearchState.Editing(lastState))
         }
@@ -94,7 +90,7 @@ class PokemonSearchViewModel @Inject constructor(
     private suspend fun saveResult(text: String, pokemons: List<Pokemon>) {
         pokemons.forEach { pokemon ->
             if (databaseRepository.getPokemonById(pokemon.id) == null)
-            databaseRepository.addPokemon(pokemon)
+                databaseRepository.addPokemon(pokemon)
         }
         databaseRepository.addSearch(Search(text, pokemons))
     }

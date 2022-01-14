@@ -6,26 +6,25 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/poke_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
-            <ImageView
-                android:id="@+id/poke_detail_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
-
-            <ImageView
-                android:id="@+id/poke_detail_favorites"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_favorite_24" />
+    <ImageView
+        android:id="@+id/poke_detail_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_favorite_24" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/poke_detail_card"
@@ -45,9 +44,9 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/poke_detail_name"
                 style="@style/textStyle"
                 android:layout_marginTop="50dp"
-                android:id="@+id/poke_detail_name"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_id_label"
@@ -56,8 +55,8 @@
                 tools:text="Pika" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_id_label"
+                style="@style/textStyle"
 
                 android:labelFor="@id/poke_detail_id_subject"
                 android:text="@string/id"
@@ -66,8 +65,8 @@
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_name" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_id_subject"
+                style="@style/textStyle"
 
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_height_subject"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,8 +74,8 @@
                 tools:text="#001023" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_height"
+                style="@style/textStyle"
 
                 android:labelFor="@id/poke_detail_height_subject"
                 android:text="@string/height"
@@ -85,8 +84,8 @@
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_id_label" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_height_subject"
+                style="@style/textStyle"
 
                 app:layout_constraintBottom_toTopOf="@+id/poke_detail_id_subject"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,8 +93,8 @@
                 tools:text="7.8" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_weight"
+                style="@style/textStyle"
                 android:labelFor="@id/poke_detail_height_subject"
                 android:text="@string/weight"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_is_default"
@@ -103,16 +102,16 @@
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_height" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_weight_subject"
+                style="@style/textStyle"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_is_default_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_height_subject"
                 tools:text="76" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_is_default"
+                style="@style/textStyle"
                 android:labelFor="@id/poke_detail_is_default_subject"
                 android:text="@string/is_default"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp"
@@ -120,24 +119,24 @@
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_weight" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_is_default_subject"
+                style="@style/textStyle"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp_subject"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_weight_subject"
                 tools:text="True" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_base_exp"
+                style="@style/textStyle"
                 android:labelFor="@id/poke_detail_base_exp_subject"
                 android:text="@string/base_exp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_is_default" />
 
             <TextView
-                style="@style/textStyle"
                 android:id="@+id/poke_detail_base_exp_subject"
+                style="@style/textStyle"
                 app:layout_constraintBottom_toTopOf="@id/poke_detail_base_exp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/poke_detail_base_exp"

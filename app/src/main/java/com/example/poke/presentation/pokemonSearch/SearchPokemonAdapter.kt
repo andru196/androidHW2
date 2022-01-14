@@ -1,6 +1,5 @@
 package com.example.poke.presentation.pokemonSearch
 
-import android.animation.ArgbEvaluator
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
@@ -15,7 +14,7 @@ import com.example.poke.domain.entity.Pokemon
 import kotlin.reflect.KFunction1
 
 class SearchPokemonAdapter(
-    private val onPokemonClicked: KFunction1<Pokemon, Unit>
+    private val onPokemonClicked: KFunction1<Pokemon, Unit>,
 ) : ListAdapter<Pokemon, SearchPokemonAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Pokemon>() {
         override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
@@ -25,9 +24,6 @@ class SearchPokemonAdapter(
             oldItem == newItem
     }
 ) {
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(ItemSearchPokemonBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -36,7 +32,7 @@ class SearchPokemonAdapter(
         ))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with (holder.binding) {
+        with(holder.binding) {
             val item = getItem(position)
 
             itemPokemonName.text = item.name
@@ -49,17 +45,11 @@ class SearchPokemonAdapter(
                 Color.parseColor("#${"%06x".format(item.color)}"),
                 Color.parseColor("#80${"%06x".format(item.color)}")
             )
-
-//            (searchIndicator.background as GradientDrawable).setColors(intArrayOf(
-//                Color.parseColor("#${"%06x".format(item.color)}"),
-//                Color.parseColor("#80${"%06x".format(item.color)}")
-//            ))
             root.setBackgroundColor(Color.parseColor("#10${"%06x".format(item.color)}"))
             root.setOnClickListener { onPokemonClicked(item) }
-
         }
     }
 
-    class ViewHolder(val binding: ItemSearchPokemonBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemSearchPokemonBinding) : RecyclerView.ViewHolder(binding.root)
 
 }

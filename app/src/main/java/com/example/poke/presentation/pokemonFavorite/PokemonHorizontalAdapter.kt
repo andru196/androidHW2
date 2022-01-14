@@ -3,7 +3,6 @@ package com.example.poke.presentation.pokemonFavorite
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.graphics.alpha
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,7 @@ import com.example.poke.domain.entity.Pokemon
 import kotlin.reflect.KFunction1
 
 class PokemonHorizontalAdapter(
-    private val onPokemonClicked: KFunction1<Pokemon, Unit>
+    private val onPokemonClicked: KFunction1<Pokemon, Unit>,
 ) : ListAdapter<Pokemon, PokemonHorizontalAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Pokemon>() {
         override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
@@ -43,7 +42,6 @@ class PokemonHorizontalAdapter(
             root.setOnClickListener { onPokemonClicked(item) }
         }
     }
-
 
     class ViewHolder(val binding: ItemPokemonBinding) : RecyclerView.ViewHolder(binding.root)
 
